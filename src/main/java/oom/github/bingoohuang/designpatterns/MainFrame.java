@@ -84,62 +84,31 @@ public class MainFrame extends JFrame {
     }
 
     private void doCommand(JTextField jTextField, JTextArea textPane) {
-        String command = jTextField.getText();
-        String[] fields = command.split(" ");
+        String commandLine = jTextField.getText();
+        String[] fields = commandLine.split(" ");
         String commandType = fields[0];
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-        textPane.setText(textPane.getText() + simpleDateFormat.format(new Date()) + "$ " + command + "\r\n");
+        textPane.setText(textPane.getText() + simpleDateFormat.format(new Date()) + "$ " + commandLine + "\r\n");
+
+        Command command;
         if ("add".equals(commandType)) {
             String id = fields[1];
             String name = fields[2];
-            User user = new User();
-            user.setId(id);
-            user.setName(name);
-            registry.put(id, user);
-
-            textPane.setText(textPane.getText() + "added " + user + ".\r\n");
+            command = new AddCommand(registry, id, name);
         } else if ("get".equals(commandType)) {
             String id = fields[1];
-            User user = registry.get(id);
-            if (user != null) {
-                textPane.setText(textPane.getText() + "got " + user + ".\r\n");
-            } else {
-                textPane.setText(textPane.getText() + "user not found.\r\n");
-            }
-
+            command = new GetCommand(registry, id);
+        } else if ("del".equals(commandType)) {
+            String id = fields[1];
+            command = new DelCommand(registry, id);
         } else {
-            textPane.setText(textPane.getText() + "command unknown.\r\n");
+            command = new BadCommand();
         }
+
+        String result = command.execute();
+        textPane.setText(textPane.getText() + result + ".\r\n");
 
         jTextField.setText("");
     }
 
-    public static class User {
-        private String id;
-        private String name;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return "User{" +
-                    "id='" + id + '\'' +
-                    ", name='" + name + '\'' +
-                    '}';
-        }
-    }
 }
