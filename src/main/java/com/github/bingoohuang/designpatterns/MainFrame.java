@@ -1,4 +1,4 @@
-package oom.github.bingoohuang.designpatterns;
+package com.github.bingoohuang.designpatterns;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
         new MainFrame();
     }
 
-    private static Map<String, User> registry = new HashMap<String, User>();
+    private static Map<String, User> registry = new LinkedHashMap<>();
 
     MainFrame() {
         // make the frame half the height and width

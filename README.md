@@ -46,3 +46,16 @@ a command line program of user managerment practise for design patterns.
   21:14:45$ get 1002
   user not found.
   ```
+
+4. Add save command to save to file with format of plain text or xml. Strategy and template method are used.
+
+  ```
+  22:16:46$ add 101 bingo
+  added User{id='101', name='bingo'}.
+  22:16:48$ add 102 dingoo
+  added User{id='102', name='dingoo'}.
+  22:16:50$ save xml
+  saved.
+  22:17:37$ save txt
+  saved.
+  ```

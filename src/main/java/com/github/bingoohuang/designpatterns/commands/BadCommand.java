@@ -1,6 +1,6 @@
-package oom.github.bingoohuang.designpatterns.commands;
+package com.github.bingoohuang.designpatterns.commands;
 
-import oom.github.bingoohuang.designpatterns.Command;
+import com.github.bingoohuang.designpatterns.Command;
 
 public class BadCommand implements Command {
     @Override

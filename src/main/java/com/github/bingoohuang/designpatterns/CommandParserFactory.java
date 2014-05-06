@@ -1,9 +1,6 @@
-package oom.github.bingoohuang.designpatterns;
+package com.github.bingoohuang.designpatterns;
 
-import oom.github.bingoohuang.designpatterns.commandparsers.AddCommandParser;
-import oom.github.bingoohuang.designpatterns.commandparsers.BadCommandParser;
-import oom.github.bingoohuang.designpatterns.commandparsers.DelCommandParser;
-import oom.github.bingoohuang.designpatterns.commandparsers.GetCommandParser;
+import com.github.bingoohuang.designpatterns.commandparsers.*;
 
 class CommandParserFactory {
     public static CommandParser create(String commandType) {
@@ -14,6 +11,8 @@ class CommandParserFactory {
             commandParser = new GetCommandParser();
         } else if ("del".equals(commandType)) {
             commandParser = new DelCommandParser();
+        } else if ("save".equals(commandType)) {
+            commandParser = new SaveCommandParser();
         } else {
             commandParser = new BadCommandParser();
         }

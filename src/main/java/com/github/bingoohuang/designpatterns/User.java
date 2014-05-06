@@ -1,4 +1,4 @@
-package oom.github.bingoohuang.designpatterns;
+package com.github.bingoohuang.designpatterns;
 
 
 public class User {
