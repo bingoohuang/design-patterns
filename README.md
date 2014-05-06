@@ -1,9 +1,9 @@
 design-patterns
 ===============
 
-practise of design patterns
+a command line program of user managerment practise for design patterns
 
-1. base code of an mini user manager based on command line .
+1. base code.
 
 run com.github.bingoohuang.designpatterns.MainFrame.main
 
