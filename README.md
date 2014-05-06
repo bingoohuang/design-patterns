@@ -31,3 +31,18 @@ a command line program of user managerment practise for design patterns.
   19:22:01$ get 1001
   user not found.
   ```
+
+3. Refactoring with factory method pattern. Every command will have a special parser (concrete factory) to create it (product).
+
+  ```
+  21:14:22$ add 1001 bingoo
+  added User{id='1001', name='bingoo'}.
+  21:14:29$ get 1001
+  got User{id='1001', name='bingoo'}.
+  21:14:34$ del 1001
+  deleted User{id='1001', name='bingoo'}.
+  21:14:43$ del 1002
+  user not found.
+  21:14:45$ get 1002
+  user not found.
+  ```

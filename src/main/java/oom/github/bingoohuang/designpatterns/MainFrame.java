@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1639098303912593036L;
@@ -83,27 +85,22 @@ public class MainFrame extends JFrame {
         });
     }
 
+    static Pattern blankPattern = Pattern.compile("\\s");
+
     private void doCommand(JTextField jTextField, JTextArea textPane) {
-        String commandLine = jTextField.getText();
-        String[] fields = commandLine.split(" ");
-        String commandType = fields[0];
+        String commandLine = jTextField.getText().trim();
+        if ("".equals(commandLine)) return;
+
+        Matcher matcher = blankPattern.matcher(commandLine);
+        boolean foundBlank = matcher.find();
+        String commandType = foundBlank ? commandLine.substring(0, matcher.start()) : commandLine;
+        String commandBody = foundBlank ? commandLine.substring(matcher.start()).trim() : "";
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         textPane.setText(textPane.getText() + simpleDateFormat.format(new Date()) + "$ " + commandLine + "\r\n");
 
-        Command command;
-        if ("add".equals(commandType)) {
-            String id = fields[1];
-            String name = fields[2];
-            command = new AddCommand(registry, id, name);
-        } else if ("get".equals(commandType)) {
-            String id = fields[1];
-            command = new GetCommand(registry, id);
-        } else if ("del".equals(commandType)) {
-            String id = fields[1];
-            command = new DelCommand(registry, id);
-        } else {
-            command = new BadCommand();
-        }
+        CommandParser commandParser = CommandParserFactory.create(commandType);
+        Command command = commandParser.parseCommand(registry, commandBody);
 
         String result = command.execute();
         textPane.setText(textPane.getText() + result + ".\r\n");

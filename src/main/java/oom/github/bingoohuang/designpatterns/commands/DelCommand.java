@@ -1,4 +1,7 @@
-package oom.github.bingoohuang.designpatterns;
+package oom.github.bingoohuang.designpatterns.commands;
+
+import oom.github.bingoohuang.designpatterns.Command;
+import oom.github.bingoohuang.designpatterns.User;
 
 import java.util.Map;
 
