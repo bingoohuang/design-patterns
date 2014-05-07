@@ -2,21 +2,20 @@ package com.github.bingoohuang.designpatterns.commands;
 
 import com.github.bingoohuang.designpatterns.Command;
 import com.github.bingoohuang.designpatterns.User;
+import com.github.bingoohuang.designpatterns.UserRegistry;
 
 import java.util.Map;
 
 public class GetCommand implements Command {
-    private final Map<String, User> registry;
     private final String id;
 
-    public GetCommand(Map<String, User> registry, String id) {
-        this.registry = registry;
+    public GetCommand(String id) {
         this.id = id;
     }
 
     @Override
     public String execute() {
-        User user = registry.get(id);
+        User user = UserRegistry.getInstance().get(id);
         if (user != null) {
             return "got " + user;
         } else {

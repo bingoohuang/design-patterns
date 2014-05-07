@@ -2,16 +2,13 @@ package com.github.bingoohuang.designpatterns.commands;
 
 import com.github.bingoohuang.designpatterns.Command;
 import com.github.bingoohuang.designpatterns.User;
-
-import java.util.Map;
+import com.github.bingoohuang.designpatterns.UserRegistry;
 
 public class AddCommand implements Command {
-    private final Map<String, User> registry;
     private String id;
     private String name;
 
-    public AddCommand(Map<String, User> registry, String id, String name) {
-        this.registry =  registry;
+    public AddCommand(String id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -21,7 +18,7 @@ public class AddCommand implements Command {
         User user = new User();
         user.setId(id);
         user.setName(name);
-        registry.put(id, user);
+        UserRegistry.getInstance().put(id, user);
 
         return "added " + user;
     }

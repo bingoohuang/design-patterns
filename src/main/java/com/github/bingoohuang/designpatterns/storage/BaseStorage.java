@@ -1,23 +1,23 @@
 package com.github.bingoohuang.designpatterns.storage;
 
 import com.github.bingoohuang.designpatterns.User;
+import com.github.bingoohuang.designpatterns.UserRegistry;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Map;
 
 public abstract class BaseStorage implements UserStorage {
     private FileOutputStream fis;
     private PrintStream ps;
 
     @Override
-    public void save(Map<String, User> registry) {
+    public void save() {
         openFile();
         start(ps);
-        for (Map.Entry<String, User> entry : registry.entrySet()) {
-            each(ps, entry.getValue());
+        for (User user : UserRegistry.getInstance().getUsers()) {
+            each(ps, user);
         }
         end(ps);
         closeFile();
@@ -25,6 +25,7 @@ public abstract class BaseStorage implements UserStorage {
 
 
     protected abstract String getExtension();
+
     protected void start(PrintStream ps) {
     }
 

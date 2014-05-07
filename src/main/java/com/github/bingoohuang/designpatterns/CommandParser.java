@@ -1,7 +1,11 @@
 package com.github.bingoohuang.designpatterns;
 
-import java.util.Map;
+public abstract class CommandParser {
+    protected String[] args;
 
-public interface CommandParser {
-    Command parseCommand(Map<String, User> registry, String commandBody);
+    public void setArgs(String[] args) {
+        this.args = args;
+    }
+
+    public abstract Command parseCommand();
 }

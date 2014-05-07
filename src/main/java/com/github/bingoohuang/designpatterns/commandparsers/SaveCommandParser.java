@@ -2,19 +2,16 @@ package com.github.bingoohuang.designpatterns.commandparsers;
 
 import com.github.bingoohuang.designpatterns.Command;
 import com.github.bingoohuang.designpatterns.CommandParser;
-import com.github.bingoohuang.designpatterns.User;
 import com.github.bingoohuang.designpatterns.commands.BadCommand;
 import com.github.bingoohuang.designpatterns.commands.SaveCommand;
 import com.github.bingoohuang.designpatterns.storage.TextStorage;
 import com.github.bingoohuang.designpatterns.storage.UserStorageContext;
 import com.github.bingoohuang.designpatterns.storage.XmlStorage;
 
-import java.util.Map;
-
-public class SaveCommandParser implements CommandParser {
+public class SaveCommandParser extends CommandParser {
     @Override
-    public Command parseCommand(Map<String, User> registry, String commandBody) {
-        String saveType = "".equals(commandBody) ? "txt" : commandBody;
+    public Command parseCommand() {
+        String saveType = "".equals(args[0]) ? "txt" : args[0];
         UserStorageContext userStorageContext = new UserStorageContext();
         if ("txt".equals(saveType)) {
             userStorageContext.setStorage(new TextStorage());
@@ -23,6 +20,6 @@ public class SaveCommandParser implements CommandParser {
         } else {
             return new BadCommand();
         }
-        return new SaveCommand(registry, userStorageContext);
+        return new SaveCommand(userStorageContext);
     }
 }

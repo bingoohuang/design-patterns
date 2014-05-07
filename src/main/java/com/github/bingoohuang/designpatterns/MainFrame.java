@@ -1,5 +1,7 @@
 package com.github.bingoohuang.designpatterns;
 
+import com.github.bingoohuang.designpatterns.commandinterpreter.SimpleCommandInterpreter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,8 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1639098303912593036L;
@@ -19,8 +19,6 @@ public class MainFrame extends JFrame {
     public static void main(String[] args) {
         new MainFrame();
     }
-
-    private static Map<String, User> registry = new LinkedHashMap<>();
 
     MainFrame() {
         // make the frame half the height and width
@@ -85,26 +83,20 @@ public class MainFrame extends JFrame {
         });
     }
 
-    static Pattern blankPattern = Pattern.compile("\\s");
 
     private void doCommand(JTextField jTextField, JTextArea textPane) {
         String commandLine = jTextField.getText().trim();
         if ("".equals(commandLine)) return;
 
-        Matcher matcher = blankPattern.matcher(commandLine);
-        boolean foundBlank = matcher.find();
-        String commandType = foundBlank ? commandLine.substring(0, matcher.start()) : commandLine;
-        String commandBody = foundBlank ? commandLine.substring(matcher.start()).trim() : "";
+        SimpleCommandInterpreter commandInterpreter = new SimpleCommandInterpreter(commandLine);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-        textPane.setText(textPane.getText() + simpleDateFormat.format(new Date()) + "$ " + commandLine + "\r\n");
-
-        CommandParser commandParser = CommandParserFactory.create(commandType);
-        Command command = commandParser.parseCommand(registry, commandBody);
+        CommandParser commandParser = CommandParserFactory.create(commandInterpreter);
+        Command command = commandParser.parseCommand();
 
         String result = command.execute();
-        textPane.setText(textPane.getText() + result + ".\r\n");
 
+        String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+        textPane.setText(textPane.getText() + time + "$ " + commandLine + "\r\n" + result + ".\r\n");
         jTextField.setText("");
     }
 

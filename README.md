@@ -59,3 +59,5 @@ a command line program of user managerment practise for design patterns.
   22:17:37$ save txt
   saved.
   ```
+
+5. Refactoring the code. Singleton and interpreter patterns are used.
