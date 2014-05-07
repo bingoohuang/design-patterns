@@ -82,3 +82,33 @@ a command line program of user managerment practise for design patterns.
   22:01:37$ logout
   logouted.
   ```
+6. Add arguments validator for add command. Decorator and responsibility chain  are used.
+
+  ```
+  00:01:48$ get 1001
+  user not found.
+  00:01:52$ add 1001 bingoo
+  added User{id='1001', name='bingoo'}.
+  00:01:54$ get 1001
+  got User{id='1001', name='bingoo'}.
+  00:01:57$ del 1001
+  login required.
+  00:02:00$ login
+  logined.
+  00:02:03$ del 1001
+  deleted User{id='1001', name='bingoo'}.
+  00:02:05$ get 1001
+  user not found.
+  00:02:08$ logout
+  logouted.
+  00:02:09$ del 1001
+  login required.
+  00:05:10$ add 101 bingoo
+  error 101 has not fixed length .
+  00:05:22$ add b001 bingoo
+  error b001 is not a number.
+  00:05:24$ add
+  error two arguments are required.
+  00:05:27$ add 1001
+  error two arguments are required.
+  ```

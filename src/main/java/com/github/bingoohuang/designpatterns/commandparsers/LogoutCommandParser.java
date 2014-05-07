@@ -6,7 +6,12 @@ import com.github.bingoohuang.designpatterns.commands.LogoutCommand;
 
 public class LogoutCommandParser extends CommandParser {
     @Override
-    public Command parseCommand() {
+    public Command createCommand(String[] args) {
         return new LogoutCommand();
+    }
+
+    @Override
+    public String supportCommandType() {
+        return "logout";
     }
 }

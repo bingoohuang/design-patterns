@@ -10,7 +10,7 @@ import com.github.bingoohuang.designpatterns.storage.XmlStorage;
 
 public class SaveCommandParser extends CommandParser {
     @Override
-    public Command parseCommand() {
+    public Command createCommand(String[] args) {
         String saveType = "".equals(args[0]) ? "txt" : args[0];
         UserStorageContext userStorageContext = new UserStorageContext();
         if ("txt".equals(saveType)) {
@@ -21,5 +21,10 @@ public class SaveCommandParser extends CommandParser {
             return new BadCommand();
         }
         return new SaveCommand(userStorageContext);
+    }
+
+    @Override
+    public String supportCommandType() {
+        return "save";
     }
 }

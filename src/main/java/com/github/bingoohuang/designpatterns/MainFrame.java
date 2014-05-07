@@ -106,11 +106,13 @@ public class MainFrame extends JFrame {
 
         SimpleCommandInterpreter commandInterpreter = new SimpleCommandInterpreter(commandLine);
 
-        CommandParser commandParser = CommandParserFactory.create(commandInterpreter);
-        Command command = commandParser.parseCommand();
-        Command proxy = new ProxyCommand(command);
-
-        String result = proxy.execute();
+        String result;
+        try {
+            Command command = CommandFactory.createCommand(commandInterpreter);
+            result = command.execute();
+        } catch (Exception e) {
+            result = "error " + e.getMessage();
+        }
 
         String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
         textPane.setText(textPane.getText() + time + "$ " + commandLine + "\r\n" + result + ".\r\n");

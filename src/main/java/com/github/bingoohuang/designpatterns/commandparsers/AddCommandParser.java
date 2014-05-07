@@ -2,13 +2,20 @@ package com.github.bingoohuang.designpatterns.commandparsers;
 
 import com.github.bingoohuang.designpatterns.Command;
 import com.github.bingoohuang.designpatterns.CommandParser;
+import com.github.bingoohuang.designpatterns.argumentsvalidators.AddCommandArgumentsValidator;
 import com.github.bingoohuang.designpatterns.commands.AddCommand;
 
 public class AddCommandParser extends CommandParser {
     @Override
-    public Command parseCommand() {
-        String id = args[0];
-        String name = args[1];
-        return new AddCommand(id, name);
+    public Command createCommand(String[] args) {
+        AddCommandArgumentsValidator argumentsValidator = new AddCommandArgumentsValidator();
+        argumentsValidator.validateArguments(args);
+
+        return new AddCommand(argumentsValidator.getId(), argumentsValidator.getName());
+    }
+
+    @Override
+    public String supportCommandType() {
+        return "add";
     }
 }

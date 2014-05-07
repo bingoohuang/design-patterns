@@ -6,7 +6,12 @@ import com.github.bingoohuang.designpatterns.commands.LoginCommand;
 
 public class LoginCommandParser extends CommandParser {
     @Override
-    public Command parseCommand() {
+    public Command createCommand(String[] args) {
         return new LoginCommand();
+    }
+
+    @Override
+    public String supportCommandType() {
+        return "login";
     }
 }
