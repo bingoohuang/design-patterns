@@ -61,3 +61,24 @@ a command line program of user managerment practise for design patterns.
   ```
 
 5. Refactoring the code. Singleton and interpreter patterns are used.
+
+6. Add login and logout command. And del and save command require login first. Proxy and observer patterns are used.
+
+  ```
+  22:01:09$ get 101
+  user not found.
+  22:01:11$ del 101
+  login required.
+  22:01:13$ login
+  logined.
+  22:01:17$ del 101
+  user not found.
+  22:01:20$ add 101 bingoo
+  added User{id='101', name='bingoo'}.
+  22:01:24$ get 101
+  got User{id='101', name='bingoo'}.
+  22:01:27$ del 101
+  deleted User{id='101', name='bingoo'}.
+  22:01:37$ logout
+  logouted.
+  ```

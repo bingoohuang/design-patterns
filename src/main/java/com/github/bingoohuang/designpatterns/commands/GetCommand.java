@@ -22,4 +22,14 @@ public class GetCommand implements Command {
             return "user not found";
         }
     }
+
+    @Override
+    public String getCommandType() {
+        return "get";
+    }
+
+    @Override
+    public boolean requireLogin() {
+        return false;
+    }
 }

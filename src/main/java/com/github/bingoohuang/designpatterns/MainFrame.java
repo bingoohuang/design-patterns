@@ -1,6 +1,8 @@
 package com.github.bingoohuang.designpatterns;
 
 import com.github.bingoohuang.designpatterns.commandinterpreter.SimpleCommandInterpreter;
+import com.github.bingoohuang.designpatterns.commands.ProxyCommand;
+import com.github.bingoohuang.designpatterns.observers.UserChangedObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +12,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1639098303912593036L;
@@ -53,15 +53,19 @@ public class MainFrame extends JFrame {
         textPane.setLineWrap(true);
         JScrollPane jsp = new JScrollPane(textPane);
 
+        final JTextField textObserver = new JTextField();
+
         cleanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textPane.setText("");
+                textObserver.setText("");
             }
         });
 
         add(top, BorderLayout.PAGE_START);
         add(jsp, BorderLayout.CENTER);
+        add(textObserver, BorderLayout.PAGE_END);
 
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,6 +85,18 @@ public class MainFrame extends JFrame {
                 doCommand(jTextField, textPane);
             }
         });
+
+        UserRegistry.getInstance().addUserChangedObserver(new UserChangedObserver() {
+            @Override
+            public void onAdd(User user) {
+                textObserver.setText(user + " was added!");
+            }
+
+            @Override
+            public void onDel(User user) {
+                textObserver.setText(user + " was deleted!");
+            }
+        });
     }
 
 
@@ -92,8 +108,9 @@ public class MainFrame extends JFrame {
 
         CommandParser commandParser = CommandParserFactory.create(commandInterpreter);
         Command command = commandParser.parseCommand();
+        Command proxy = new ProxyCommand(command);
 
-        String result = command.execute();
+        String result = proxy.execute();
 
         String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
         textPane.setText(textPane.getText() + time + "$ " + commandLine + "\r\n" + result + ".\r\n");

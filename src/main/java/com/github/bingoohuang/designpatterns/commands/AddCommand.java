@@ -22,4 +22,14 @@ public class AddCommand implements Command {
 
         return "added " + user;
     }
+
+    @Override
+    public String getCommandType() {
+        return "add";
+    }
+
+    @Override
+    public boolean requireLogin() {
+        return false;
+    }
 }

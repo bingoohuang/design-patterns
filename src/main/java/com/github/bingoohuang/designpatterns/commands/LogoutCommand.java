@@ -1,20 +1,22 @@
 package com.github.bingoohuang.designpatterns.commands;
 
 import com.github.bingoohuang.designpatterns.Command;
+import com.github.bingoohuang.designpatterns.UserRegistry;
 
-public class BadCommand implements Command {
+public class LogoutCommand implements Command {
     @Override
     public String execute() {
-        return "command unknown";
+        UserRegistry.getInstance().logout();
+        return "logouted";
     }
 
     @Override
     public String getCommandType() {
-        return "bad";
+        return "logout";
     }
 
     @Override
     public boolean requireLogin() {
-        return false;
+        return true;
     }
 }

@@ -2,6 +2,8 @@ package com.github.bingoohuang.designpatterns;
 
 import com.github.bingoohuang.designpatterns.commandinterpreter.SimpleCommandInterpreter;
 import com.github.bingoohuang.designpatterns.commandparsers.*;
+import com.github.bingoohuang.designpatterns.commandparsers.LoginCommandParser;
+import com.github.bingoohuang.designpatterns.commandparsers.LogoutCommandParser;
 
 class CommandParserFactory {
     public static CommandParser create(SimpleCommandInterpreter simpleCommandInterpreter) {
@@ -15,6 +17,10 @@ class CommandParserFactory {
             commandParser = new DelCommandParser();
         } else if ("save".equals(commandType)) {
             commandParser = new SaveCommandParser();
+        } else if ("login".equals(commandType)) {
+            commandParser = new LoginCommandParser();
+        } else if ("logout".equals(commandType)) {
+            commandParser = new LogoutCommandParser();
         } else {
             commandParser = new BadCommandParser();
         }

@@ -1,16 +1,18 @@
 package com.github.bingoohuang.designpatterns.commands;
 
 import com.github.bingoohuang.designpatterns.Command;
+import com.github.bingoohuang.designpatterns.UserRegistry;
 
-public class BadCommand implements Command {
+public class LoginCommand implements Command {
     @Override
     public String execute() {
-        return "command unknown";
+        UserRegistry.getInstance().login();
+        return "logined";
     }
 
     @Override
     public String getCommandType() {
-        return "bad";
+        return "login";
     }
 
     @Override

@@ -17,4 +17,14 @@ public class SaveCommand implements Command {
     public String execute() {
         return userStorageContext.save();
     }
+
+    @Override
+    public String getCommandType() {
+        return "save";
+    }
+
+    @Override
+    public boolean requireLogin() {
+        return true;
+    }
 }
