@@ -50,6 +50,7 @@ class CommandFactory {
     }
 
     public static Command createCommand(SimpleCommandInterpreter simpleCommandInterpreter) {
+        commandParser.validateArguments(simpleCommandInterpreter);
         Command command = commandParser.parseCommand(simpleCommandInterpreter);
         return new ProxyCommand(command);
     }
