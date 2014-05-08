@@ -25,7 +25,11 @@ class CommandFactory {
         BossCommandParser bossCommandParser = new BossCommandParser();
         HrCommandParser hrCommandParser = new HrCommandParser();
         LoadCommandParser loadCommandParser = new LoadCommandParser();
+        StateCommandParser stateCommandParser = new StateCommandParser();
+        WorkloadCommandParser workloadCommandParser = new WorkloadCommandParser();
 
+        stateCommandParser.setNext(workloadCommandParser);
+        loadCommandParser.setNext(stateCommandParser);
         hrCommandParser.setNext(loadCommandParser);
         bossCommandParser.setNext(hrCommandParser);
         addManagerCommandParser.setNext(bossCommandParser);

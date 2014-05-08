@@ -250,3 +250,24 @@ a command line program of user managerment practise for design patterns.
   User{id='1002', name='dingoo', age=22, phone='1858', city='bj', salary='0'}
   User{id='1003', name='pingoo', age=25, phone='185932', city='tj', salary='0'}.
   ```
+
+11. Add state and workload commands. State pattern is used.
+
+  ```
+  23:10:03$ add 1001 bingoo 35 1855 nj
+  added User{id='1001', name='bingoo', age=35, phone='1855', city='nj', salary='0'}.
+  23:10:09$ workload 1001
+  bingoo's workload per day is 10.
+  23:10:21$ state 1001 ill
+  state changed.
+  23:10:25$ workload 1001
+  bingoo's workload per day is 0.
+  23:10:33$ state 1001 love
+  state changed.
+  23:10:39$ workload 1001
+  bingoo's workload per day is 5.
+  23:10:46$ state 1001 normal
+  state changed.
+  23:10:49$ workload 1001
+  bingoo's workload per day is 10.
+  ```

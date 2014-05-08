@@ -2,6 +2,8 @@ package com.github.bingoohuang.designpatterns;
 
 
 import com.github.bingoohuang.designpatterns.flyweight.City;
+import com.github.bingoohuang.designpatterns.state.NormalState;
+import com.github.bingoohuang.designpatterns.state.WorkState;
 import com.github.bingoohuang.designpatterns.visitor.Visitor;
 
 public abstract class User implements Cloneable {
@@ -11,6 +13,7 @@ public abstract class User implements Cloneable {
     private String phone; // optional
     private City city; // optional
     private int salary; // optional
+    private WorkState workState = new NormalState();
 
     User(UserBuilder builder) {
         this.id = builder.id;
@@ -36,6 +39,14 @@ public abstract class User implements Cloneable {
 
     public String getName() {
         return name;
+    }
+
+    public void setWorkState(WorkState workState) {
+        this.workState = workState;
+    }
+
+    public int workLoadPerday() {
+        return workState.workLoadPerday();
     }
 
     public void setName(String name) {
