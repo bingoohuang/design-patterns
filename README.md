@@ -169,3 +169,34 @@ a command line program of user managerment practise for design patterns.
   User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}
   User{id='1003', name='pingoo', age=35, phone='18551855099', address='nj'}.
   ```
+
+9. Add manager and staffs of an user. Composite(hierarchy) and flyweight (city) patterns are used.
+
+  ```
+  17:20:07$ add 1001 bingoo 35 18551855099 nj
+  added User{id='1001', name='bingoo', age=35, phone='18551855099', city='nj', salary='0'}.
+  17:20:19$ add 1002 dingoo 36 18551855099 bj
+  added User{id='1002', name='dingoo', age=36, phone='18551855099', city='bj', salary='0'}.
+  17:21:17$ manage 1001 1002
+  1001 began to manage 1002.
+  17:21:45$ add 1003 pingoo 37 18551855099 tj
+  added User{id='1003', name='pingoo', age=37, phone='18551855099', city='tj', salary='0'}.
+  17:22:24$ manage 1001 1003
+  1001 began to manage 1003.
+  17:22:32$ addsalary 9999
+  error:1.
+  17:23:51$ addsalary 1001 9999
+  salary of1001 and all its staff has been added by9999.
+  17:24:01$ list
+  3 users found:
+  User{id='1001', name='bingoo', age=35, phone='18551855099', city='nj', salary='9999'}
+  User{id='1002', name='dingoo', age=36, phone='18551855099', city='bj', salary='9999'}
+  User{id='1003', name='pingoo', age=37, phone='18551855099', city='tj', salary='9999'}.
+  17:24:17$ addsalary 1002 1000
+  salary of1002 and all its staff has been added by1000.
+  17:24:20$ list
+  3 users found:
+  User{id='1001', name='bingoo', age=35, phone='18551855099', city='nj', salary='9999'}
+  User{id='1002', name='dingoo', age=36, phone='18551855099', city='bj', salary='10999'}
+  User{id='1003', name='pingoo', age=37, phone='18551855099', city='tj', salary='9999'}.
+  ```

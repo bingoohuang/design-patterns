@@ -1,11 +1,16 @@
 package com.github.bingoohuang.designpatterns;
 
+import com.github.bingoohuang.designpatterns.flyweight.City;
+import com.github.bingoohuang.designpatterns.flyweight.CityFactory;
+
 public class UserBuilder {
     final String id;
     final String name;
     int age;
     String phone;
-    String address;
+    City city;
+    User manager;
+    int salary;
 
     public static UserBuilder newUser(String id, String name) {
         return new UserBuilder(id, name);
@@ -21,13 +26,23 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder manager(User manager) {
+        this.manager = manager;
+        return this;
+    }
+
     public UserBuilder phone(String phone) {
         this.phone = phone;
         return this;
     }
 
-    public UserBuilder address(String address) {
-        this.address = address;
+    public UserBuilder salary(int salary) {
+        this.salary = salary;
+        return this;
+    }
+
+    public UserBuilder city(String cityName) {
+        this.city = CityFactory.getCity(cityName);
         return this;
     }
 

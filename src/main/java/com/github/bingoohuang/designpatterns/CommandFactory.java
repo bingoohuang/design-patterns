@@ -19,6 +19,10 @@ class CommandFactory {
         ListCommandParser listCommandParser = new ListCommandParser();
         RecordCommandParser recordCommandParser = new RecordCommandParser();
         HistoryCommandParser historyCommandParser = new HistoryCommandParser();
+        ManageCommandParser manageCommandParser = new ManageCommandParser();
+        AddSalaryCommandParser addSalaryCommandParser = new AddSalaryCommandParser();
+        manageCommandParser.setNext(addSalaryCommandParser);
+        historyCommandParser.setNext(manageCommandParser);
         recordCommandParser.setNext(historyCommandParser);
         listCommandParser.setNext(recordCommandParser);
         cloneCommandParser.setNext(listCommandParser);

@@ -18,7 +18,7 @@ public class AddCommand implements Command {
         User user = UserBuilder.newUser(argumentsValidator.getId(), argumentsValidator.getName())
                 .age(argumentsValidator.getAge())
                 .phone(argumentsValidator.getPhone())
-                .address(argumentsValidator.getAddress())
+                .city(argumentsValidator.getAddress())
                 .build();
         UserRegistry.getInstance().put(user);
 
