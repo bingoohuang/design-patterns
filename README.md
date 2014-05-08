@@ -200,3 +200,21 @@ a command line program of user managerment practise for design patterns.
   User{id='1002', name='dingoo', age=36, phone='18551855099', city='bj', salary='10999'}
   User{id='1003', name='pingoo', age=37, phone='18551855099', city='tj', salary='9999'}.
   ```
+
+10. Add boss command to list managers' name and hr list all staffs' name. Visitor pattern is used.
+  ```
+  21:15:21$ addmanager 1001 bingoo 35 1855 nj
+  added ManagerUser{id='1001', name='bingoo', age=35, phone='1855', city='nj', salary='0'}.
+  21:15:32$ add 1002 dingoo 32 1866 bj
+  added User{id='1002', name='dingoo', age=32, phone='1866', city='bj', salary='0'}.
+  21:15:37$ clone 1002 1003 pingoo
+  cloned User{id='1003', name='pingoo', age=32, phone='1866', city='bj', salary='0'}.
+  21:15:42$ manage 1001 1002
+  1001 began to manage 1002.
+  21:15:45$ manage 1001 1003
+  1001 began to manage 1003.
+  21:15:49$ boss
+  manager:bingoo.
+  21:15:52$ hr
+  manager:bingoo,staff:dingoo,staff:pingoo.
+  ```

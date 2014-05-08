@@ -1,5 +1,7 @@
 package com.github.bingoohuang.designpatterns.argumentsvalidators;
 
+import com.github.bingoohuang.designpatterns.Manager;
+import com.github.bingoohuang.designpatterns.User;
 import com.github.bingoohuang.designpatterns.UserRegistry;
 
 public class ManageCommandArgumentsValidator implements CommandArgumentsValidator {
@@ -26,6 +28,10 @@ public class ManageCommandArgumentsValidator implements CommandArgumentsValidato
 
         if (!UserRegistry.getInstance().exists(staffId))
             throw new BadArgumentException(staffId + " does not exist");
+
+        User user = UserRegistry.getInstance().get(manageId);
+        if (!(user instanceof Manager))
+            throw new BadArgumentException(manageId + " is not a manager");
     }
 
     public String getManageId() {

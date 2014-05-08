@@ -9,7 +9,6 @@ public class UserBuilder {
     int age;
     String phone;
     City city;
-    User manager;
     int salary;
 
     public static UserBuilder newUser(String id, String name) {
@@ -23,11 +22,6 @@ public class UserBuilder {
 
     public UserBuilder age(int age) {
         this.age = age;
-        return this;
-    }
-
-    public UserBuilder manager(User manager) {
-        this.manager = manager;
         return this;
     }
 
@@ -46,8 +40,11 @@ public class UserBuilder {
         return this;
     }
 
-    public User build() {
-        return new User(this);
+    public User buildStaff() {
+        return new Staff(this);
     }
 
+    public User buildManager() {
+        return new Manager(this);
+    }
 }

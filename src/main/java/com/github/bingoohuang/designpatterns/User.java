@@ -2,15 +2,9 @@ package com.github.bingoohuang.designpatterns;
 
 
 import com.github.bingoohuang.designpatterns.flyweight.City;
+import com.github.bingoohuang.designpatterns.visitor.Visitor;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class User implements Cloneable{
-    // composite pattern
-    private User manager;
-    private List<User> staffs = new ArrayList<User>();
-
+public abstract class User implements Cloneable {
     private String id; // required
     private String name; // required
     private int age; // optional
@@ -19,7 +13,6 @@ public class User implements Cloneable{
     private int salary; // optional
 
     User(UserBuilder builder) {
-        this.manager = builder.manager;
         this.id = builder.id;
         this.name = builder.name;
         this.age = builder.age;
@@ -31,9 +24,6 @@ public class User implements Cloneable{
     // add salary for all staffs under current manager recursively.
     public void addSalary(int incrementSalary) {
         salary += incrementSalary;
-        for (User user : staffs) {
-            user.addSalary(incrementSalary);
-        }
     }
 
     public String getId() {
@@ -51,6 +41,8 @@ public class User implements Cloneable{
     public void setName(String name) {
         this.name = name;
     }
+
+    public abstract void accept(Visitor visitor);
 
     @Override
     public User clone() {
@@ -71,17 +63,5 @@ public class User implements Cloneable{
                 ", city='" + city + '\'' +
                 ", salary='" + salary + '\'' +
                 '}';
-    }
-
-    public void setManager(User manager) {
-        this.manager = manager;
-    }
-
-    public User getManager() {
-        return manager;
-    }
-
-    public void addStaff(User staff) {
-        staffs.add(staff);
     }
 }

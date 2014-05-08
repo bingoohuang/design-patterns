@@ -6,10 +6,10 @@ import com.github.bingoohuang.designpatterns.UserBuilder;
 import com.github.bingoohuang.designpatterns.UserRegistry;
 import com.github.bingoohuang.designpatterns.argumentsvalidators.AddCommandArgumentsValidator;
 
-public class AddCommand implements Command {
+public class AddManagerCommand implements Command {
     private final AddCommandArgumentsValidator argumentsValidator;
 
-    public AddCommand(AddCommandArgumentsValidator argumentsValidator) {
+    public AddManagerCommand(AddCommandArgumentsValidator argumentsValidator) {
         this.argumentsValidator = argumentsValidator;
     }
 
@@ -19,7 +19,7 @@ public class AddCommand implements Command {
                 .age(argumentsValidator.getAge())
                 .phone(argumentsValidator.getPhone())
                 .city(argumentsValidator.getAddress())
-                .buildStaff();
+                .buildManager();
         UserRegistry.getInstance().put(user);
 
         return "added " + user;
