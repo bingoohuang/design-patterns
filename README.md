@@ -218,3 +218,35 @@ a command line program of user managerment practise for design patterns.
   21:15:52$ hr
   manager:bingoo,staff:dingoo,staff:pingoo.
   ```
+
+10. Add load command to load staffs from file. Iterator pattern is used.
+
+  ```
+  21:46:07$ add 1001 bingoo 35 18665 nj
+  added User{id='1001', name='bingoo', age=35, phone='18665', city='nj', salary='0'}.
+  21:46:16$ add 1002 dingoo 22 1858 bj
+  added User{id='1002', name='dingoo', age=22, phone='1858', city='bj', salary='0'}.
+  21:46:28$ add 1003 pingoo 25 185932 tj
+  added User{id='1003', name='pingoo', age=25, phone='185932', city='tj', salary='0'}.
+  21:46:32$ save txt
+  login required.
+  21:46:35$ login
+  logined.
+  21:46:38$ save txt
+  saved.
+  21:46:48$ del 1001
+  deleted User{id='1001', name='bingoo', age=35, phone='18665', city='nj', salary='0'}.
+  21:46:50$ del 1002
+  deleted User{id='1002', name='dingoo', age=22, phone='1858', city='bj', salary='0'}.
+  21:46:53$ del 1003
+  deleted User{id='1003', name='pingoo', age=25, phone='185932', city='tj', salary='0'}.
+  21:46:54$ list
+  zero users found.
+  21:46:57$ load
+  loaded 3 staffs.
+  21:46:59$ list
+  3 users found:
+  User{id='1001', name='bingoo', age=35, phone='18665', city='nj', salary='0'}
+  User{id='1002', name='dingoo', age=22, phone='1858', city='bj', salary='0'}
+  User{id='1003', name='pingoo', age=25, phone='185932', city='tj', salary='0'}.
+  ```

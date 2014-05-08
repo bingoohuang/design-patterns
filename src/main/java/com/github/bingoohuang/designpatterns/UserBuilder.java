@@ -11,7 +11,7 @@ public class UserBuilder {
     City city;
     int salary;
 
-    public static UserBuilder newUser(String id, String name) {
+    public static UserBuilder newBuilder(String id, String name) {
         return new UserBuilder(id, name);
     }
 
@@ -40,11 +40,11 @@ public class UserBuilder {
         return this;
     }
 
-    public User buildStaff() {
+    public Staff buildStaff() {
         return new Staff(this);
     }
 
-    public User buildManager() {
+    public Manager buildManager() {
         return new Manager(this);
     }
 }

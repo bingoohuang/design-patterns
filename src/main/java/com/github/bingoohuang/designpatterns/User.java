@@ -64,4 +64,16 @@ public abstract class User implements Cloneable {
                 ", salary='" + salary + '\'' +
                 '}';
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public City getCity() {
+        return city;
+    }
 }
