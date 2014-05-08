@@ -1,10 +1,6 @@
 package com.github.bingoohuang.designpatterns;
 
-import com.github.bingoohuang.designpatterns.commandinterpreter.SimpleCommandInterpreter;
 import com.github.bingoohuang.designpatterns.observers.UserChangedObserver;
-import com.github.bingoohuang.designpatterns.recorder.CommandRecorder;
-import com.github.bingoohuang.designpatterns.recorder.MemoryCommandRecorder;
-import com.github.bingoohuang.designpatterns.recorder.NoneCommandRecorder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1639098303912593036L;
@@ -21,6 +15,8 @@ public class MainFrame extends JFrame {
     public static void main(String[] args) {
         new MainFrame();
     }
+
+    UserManagerFacade userManagerFacade = new UserManagerFacade();
 
     MainFrame() {
         // make the frame half the height and width
@@ -88,7 +84,7 @@ public class MainFrame extends JFrame {
             }
         });
 
-        UserRegistry.getInstance().addUserChangedObserver(new UserChangedObserver() {
+        userManagerFacade.registerUserChangedObserver(new UserChangedObserver() {
             @Override
             public void onAdd(User user) {
                 textObserver.setText(user + " was added!");
@@ -106,23 +102,10 @@ public class MainFrame extends JFrame {
         String commandLine = jTextField.getText().trim();
         if ("".equals(commandLine)) return;
 
-        SimpleCommandInterpreter commandInterpreter = new SimpleCommandInterpreter(commandLine);
+        String displayedResult = userManagerFacade.doCommand(commandLine);
 
-        String result;
-        try {
-            Command command = CommandFactory.createCommand(commandInterpreter);
-            // bridge command and recorder
-            CommandRecorder commandRecorder =
-                    UserRegistry.getInstance().getCommandHistory() == null
-                            ? new NoneCommandRecorder(command, commandLine)
-                            : new MemoryCommandRecorder(command, commandLine);
-            result = commandRecorder.exec();
-        } catch (Exception e) {
-            result = "error:" + e.getMessage();
-        }
 
-        String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-        textPane.setText(textPane.getText() + time + "$ " + commandLine + "\r\n" + result + ".\r\n");
+        textPane.setText(textPane.getText() + displayedResult);
         jTextField.setText("");
     }
 
