@@ -18,7 +18,7 @@ public class AddManagerCommand implements Command {
         User user = UserBuilder.newBuilder(argumentsValidator.getId(), argumentsValidator.getName())
                 .age(argumentsValidator.getAge())
                 .phone(argumentsValidator.getPhone())
-                .city(argumentsValidator.getAddress())
+                .city(argumentsValidator.getCity())
                 .buildManager();
         UserRegistry.getInstance().put(user);
 

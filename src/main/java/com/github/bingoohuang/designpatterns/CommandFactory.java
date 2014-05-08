@@ -27,7 +27,9 @@ class CommandFactory {
         LoadCommandParser loadCommandParser = new LoadCommandParser();
         StateCommandParser stateCommandParser = new StateCommandParser();
         WorkloadCommandParser workloadCommandParser = new WorkloadCommandParser();
+        UndoComandParser undoComandParser = new UndoComandParser();
 
+        workloadCommandParser.setNext(undoComandParser);
         stateCommandParser.setNext(workloadCommandParser);
         loadCommandParser.setNext(stateCommandParser);
         hrCommandParser.setNext(loadCommandParser);

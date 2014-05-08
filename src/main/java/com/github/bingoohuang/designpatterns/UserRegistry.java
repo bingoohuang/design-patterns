@@ -1,5 +1,8 @@
 package com.github.bingoohuang.designpatterns;
 
+import com.github.bingoohuang.designpatterns.argumentsvalidators.AddCommandArgumentsValidator;
+import com.github.bingoohuang.designpatterns.commands.AddCommand;
+import com.github.bingoohuang.designpatterns.commands.DelCommand;
 import com.github.bingoohuang.designpatterns.observers.UserChangedObserver;
 import com.github.bingoohuang.designpatterns.recorder.CommandHistory;
 
@@ -9,6 +12,7 @@ public class UserRegistry {
     private Map<String, User> registry = new LinkedHashMap<>();
     private static UserRegistry userRegistry = new UserRegistry();
     private boolean logined;
+    private CommandMemento commandMemento = new CommandMemento();
 
     private List<UserChangedObserver> userChangedObservers = new ArrayList<>();
     private CommandHistory commandHistory;
@@ -24,6 +28,11 @@ public class UserRegistry {
     public void put(User user) {
         registry.put(user.getId(), user);
         notifyAdd(user);
+        commandMemento.setUndoCommand(new DelCommand(user.getId()));
+    }
+
+    public void undo() {
+        commandMemento.undo();
     }
 
     public User get(String id) {
@@ -33,6 +42,7 @@ public class UserRegistry {
     public void remove(String id) {
         User remove = registry.remove(id);
         notifyDel(remove);
+        commandMemento.setUndoCommand(new AddCommand(new AddCommandArgumentsValidator(remove)));
     }
 
     public Collection<User> getUsers() {

@@ -271,3 +271,13 @@ a command line program of user managerment practise for design patterns.
   23:10:49$ workload 1001
   bingoo's workload per day is 10.
   ```
+
+12. Add undo command. Mememto pattern is used.
+  ```
+  23:55:26$ add 1001 bingoo 35 1855 nj
+  added User{id='1001', name='bingoo', age=35, phone='1855', city='nj', salary='0'}.
+  23:55:28$ undo
+  undo.
+  23:55:29$ list
+  zero users found.
+  ```
