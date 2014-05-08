@@ -17,6 +17,10 @@ class CommandFactory {
         LogoutCommandParser logoutCommandParser = new LogoutCommandParser();
         CloneCommandParser cloneCommandParser = new CloneCommandParser();
         ListCommandParser listCommandParser = new ListCommandParser();
+        RecordCommandParser recordCommandParser = new RecordCommandParser();
+        HistoryCommandParser historyCommandParser = new HistoryCommandParser();
+        recordCommandParser.setNext(historyCommandParser);
+        listCommandParser.setNext(recordCommandParser);
         cloneCommandParser.setNext(listCommandParser);
         logoutCommandParser.setNext(cloneCommandParser);
         loginCommandParser.setNext(logoutCommandParser);

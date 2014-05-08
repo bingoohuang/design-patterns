@@ -25,7 +25,6 @@ public class AddCommand implements Command {
         return "added " + user;
     }
 
-
     @Override
     public boolean requireLogin() {
         return false;

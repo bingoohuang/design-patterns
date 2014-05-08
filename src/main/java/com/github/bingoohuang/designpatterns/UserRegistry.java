@@ -1,6 +1,7 @@
 package com.github.bingoohuang.designpatterns;
 
 import com.github.bingoohuang.designpatterns.observers.UserChangedObserver;
+import com.github.bingoohuang.designpatterns.recorder.CommandHistory;
 
 import java.util.*;
 
@@ -10,6 +11,7 @@ public class UserRegistry {
     private boolean logined;
 
     private List<UserChangedObserver> userChangedObservers = new ArrayList<>();
+    private CommandHistory commandHistory;
 
     public void addUserChangedObserver(UserChangedObserver userChangedObserver) {
         userChangedObservers.add(userChangedObserver);
@@ -64,5 +66,22 @@ public class UserRegistry {
 
     public boolean exists(String id) {
         return registry.containsKey(id);
+    }
+
+    public void saveHistory(String commandLine, String result) {
+        if (commandHistory != null)
+            commandHistory.saveHistory(commandLine, result);
+    }
+
+    public void setCommandHistory(CommandHistory commandHistory) {
+        this.commandHistory = commandHistory;
+    }
+
+    public CommandHistory getCommandHistory() {
+        return commandHistory;
+    }
+
+    public String showHistory() {
+        return commandHistory == null ? "history disabled" : commandHistory.showHistory();
     }
 }

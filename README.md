@@ -82,7 +82,7 @@ a command line program of user managerment practise for design patterns.
   22:01:37$ logout
   logouted.
   ```
-6. Add arguments validator for add command. Decorator and responsibility chain  are used.
+6. Add arguments validator for add command. Decorator and responsibility chain are used.
 
   ```
   00:01:48$ get 1001
@@ -113,7 +113,7 @@ a command line program of user managerment practise for design patterns.
   error two arguments are required.
   ```
 
-7. Add list and clone commands. Clone and builder patterns  are used.
+7. Add list and clone commands. Clone and builder patterns are used.
 
   ```
   08:47:30$ list
@@ -131,4 +131,41 @@ a command line program of user managerment practise for design patterns.
   User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}.
   08:48:25$ get 1001
   got User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  ```
+
+8. Command history can be recorded in memory or file. Bridge and adapter patterns are used.
+  ```
+  11:20:20$ record file
+  record on.
+  11:20:30$ add 1001 bingoo 35 18551855099 nj
+  added User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  11:20:37$ clone 1001 1002 dingoo
+  cloned User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}.
+  11:20:42$ login
+  logined.
+  11:20:51$ clone 1001 1003 pingoo
+  cloned User{id='1003', name='pingoo', age=35, phone='18551855099', address='nj'}.
+  11:20:57$ del 1001
+  deleted User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  11:21:00$ list
+  2 users found:
+  User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}
+  User{id='1003', name='pingoo', age=35, phone='18551855099', address='nj'}.
+  11:21:02$ history
+  11:20:20$ record file
+  record on.
+  11:20:30$ add 1001 bingoo 35 18551855099 nj
+  added User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  11:20:37$ clone 1001 1002 dingoo
+  cloned User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}.
+  11:20:42$ login
+  logined.
+  11:20:51$ clone 1001 1003 pingoo
+  cloned User{id='1003', name='pingoo', age=35, phone='18551855099', address='nj'}.
+  11:20:57$ del 1001
+  deleted User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  11:21:00$ list
+  2 users found:
+  User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}
+  User{id='1003', name='pingoo', age=35, phone='18551855099', address='nj'}.
   ```
