@@ -27,11 +27,6 @@ public class DelCommand implements Command {
     }
 
     @Override
-    public String getCommandType() {
-        return "del";
-    }
-
-    @Override
     public boolean requireLogin() {
         return true;
     }

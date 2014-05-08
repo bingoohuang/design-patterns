@@ -112,3 +112,23 @@ a command line program of user managerment practise for design patterns.
   00:05:27$ add 1001
   error two arguments are required.
   ```
+
+7. Add list and clone commands. Clone and builder patterns  are used.
+
+  ```
+  08:47:30$ list
+  zero users found.
+  08:47:52$ add 1001 bingoo 35 18551855099 nj
+  added User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  08:47:54$ list
+  1 users found:
+  User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  08:48:01$ clone 1001 1002 dingoo
+  cloned User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}.
+  08:48:03$ list
+  2 users found:
+  User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}
+  User{id='1002', name='dingoo', age=35, phone='18551855099', address='nj'}.
+  08:48:25$ get 1001
+  got User{id='1001', name='bingoo', age=35, phone='18551855099', address='nj'}.
+  ```

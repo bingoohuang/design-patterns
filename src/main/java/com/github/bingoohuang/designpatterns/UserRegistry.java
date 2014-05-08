@@ -19,8 +19,8 @@ public class UserRegistry {
         return userRegistry;
     }
 
-    public void put(String id, User user) {
-        registry.put(id, user);
+    public void put(User user) {
+        registry.put(user.getId(), user);
         notifyAdd(user);
     }
 
@@ -60,5 +60,9 @@ public class UserRegistry {
         for (UserChangedObserver userChangedObserver : userChangedObservers) {
             userChangedObserver.onDel(user);
         }
+    }
+
+    public boolean exists(String id) {
+        return registry.containsKey(id);
     }
 }

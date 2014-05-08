@@ -11,11 +11,6 @@ public class LogoutCommand implements Command {
     }
 
     @Override
-    public String getCommandType() {
-        return "logout";
-    }
-
-    @Override
     public boolean requireLogin() {
         return true;
     }

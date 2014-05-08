@@ -11,11 +11,6 @@ public class LoginCommand implements Command {
     }
 
     @Override
-    public String getCommandType() {
-        return "login";
-    }
-
-    @Override
     public boolean requireLogin() {
         return false;
     }

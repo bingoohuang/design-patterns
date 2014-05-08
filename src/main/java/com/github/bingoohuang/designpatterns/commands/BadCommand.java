@@ -9,11 +9,6 @@ public class BadCommand implements Command {
     }
 
     @Override
-    public String getCommandType() {
-        return "bad";
-    }
-
-    @Override
     public boolean requireLogin() {
         return false;
     }

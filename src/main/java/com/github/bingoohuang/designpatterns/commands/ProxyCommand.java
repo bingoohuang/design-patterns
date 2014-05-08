@@ -24,11 +24,6 @@ public class ProxyCommand implements Command {
     }
 
     @Override
-    public String getCommandType() {
-        return command.getCommandType();
-    }
-
-    @Override
     public boolean requireLogin() {
         return false;
     }

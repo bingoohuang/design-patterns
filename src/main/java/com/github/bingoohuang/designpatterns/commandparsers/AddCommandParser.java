@@ -11,7 +11,7 @@ public class AddCommandParser extends CommandParser {
         AddCommandArgumentsValidator argumentsValidator = new AddCommandArgumentsValidator();
         argumentsValidator.validateArguments(args);
 
-        return new AddCommand(argumentsValidator.getId(), argumentsValidator.getName());
+        return new AddCommand(argumentsValidator);
     }
 
     @Override

@@ -24,11 +24,6 @@ public class GetCommand implements Command {
     }
 
     @Override
-    public String getCommandType() {
-        return "get";
-    }
-
-    @Override
     public boolean requireLogin() {
         return false;
     }
